@@ -21,13 +21,13 @@ public class HandMoveChecker : MonoBehaviour {
         STOP
     }
 
-    MoveType movetype;
+    MoveType move_type_;
 
     void Start()
     {
         is_hand_exist_ = GetComponentInParent<IsHandExist>();
         once_position_unification_ = false;
-        movetype = MoveType.STOP;
+        move_type_ = MoveType.STOP;
         hand_controller_ = FindObjectOfType<HandController>();
         skeleta_hand_ = GetComponent<SkeletalHand>();
         hand_old_pos_ = skeleta_hand_.GetPalmPosition();
@@ -38,7 +38,7 @@ public class HandMoveChecker : MonoBehaviour {
     void Update()
     {
         HandMoveCheck();
-        Debug.Log(movetype);
+        Debug.Log(move_type_);
     }
 
     void HandMoveCheck()
@@ -77,17 +77,17 @@ public class HandMoveChecker : MonoBehaviour {
 
         if (hand_pos_.z > hand_old_pos_.z + 0.4f)
         {
-            movetype = MoveType.ADVANCE;
+            move_type_ = MoveType.ADVANCE;
 
         }
         else
         if(hand_pos_.z < hand_old_pos_.z - 0.4f)
         {
-            movetype = MoveType.BACKWARD;
+            move_type_ = MoveType.BACKWARD;
 
         }else
         {
-            movetype = MoveType.STOP;
+            move_type_ = MoveType.STOP;
             hand_old_pos_ = hand_pos_;
 
         }
