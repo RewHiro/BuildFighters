@@ -7,6 +7,8 @@ using System.Linq;
 public class AirframeParameter : MonoBehaviour
 {
 
+    const string JSON_PATH = "/TempResources/Json/";
+
     [SerializeField]
     string JSON_FILE_NAME = "";
 
@@ -28,7 +30,7 @@ public class AirframeParameter : MonoBehaviour
 
     void Awake()
     {
-        var json_text = File.ReadAllText(Application.dataPath + "/" + JSON_FILE_NAME);
+        var json_text = File.ReadAllText(Application.dataPath + JSON_PATH + JSON_FILE_NAME);
         JsonNode json = JsonNode.Parse(json_text);
         var parameters = json["Parameters"];
         foreach (var parameter in parameters)
