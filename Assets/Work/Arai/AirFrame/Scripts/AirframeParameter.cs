@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Collections.Generic;
 
-public class AirframeParameter : MonoBehaviour
+public class AirFrameParameter : MonoBehaviour
 {
+
+    const string JSON_PATH = "/TempResources/Json/";
+
+    [SerializeField]
+    string JSON_FILE_NAME = "";
 
     public float GetMoveSpeed(int id)
     {
-
         return parameters_.ContainsKey(id) ?
             parameters_[id].move_speed_ : ErrorMessageFloat(id);
     }
@@ -98,12 +100,6 @@ public class AirframeParameter : MonoBehaviour
         return "error";
     }
 
-
-    const string JSON_PATH = "/TempResources/Json/";
-
-    [SerializeField]
-    string JSON_FILE_NAME = "";
-
     struct Parameter
     {
         public int id_;
@@ -119,4 +115,5 @@ public class AirframeParameter : MonoBehaviour
     }
 
     Dictionary<int, Parameter> parameters_ = new Dictionary<int, Parameter>();
+
 }
