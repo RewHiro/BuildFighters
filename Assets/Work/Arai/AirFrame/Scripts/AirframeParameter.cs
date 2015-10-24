@@ -7,26 +7,60 @@ using System.Linq;
 public class AirframeParameter : MonoBehaviour
 {
 
-    const string JSON_PATH = "/TempResources/Json/";
-
-    [SerializeField]
-    string JSON_FILE_NAME = "";
-
-    struct Parameter
+    public float GetMoveSpeed(int id)
     {
-        public int id_;
-        public float move_speed_;
-        public float swing_speed_;
-        public float boost_power_;
-        public float jump_power_;
-        public float max_boost_value_;
-        public float max_hp_;
-        public float armor_value_;
-        public string name_;
-        public string explanatory_text_;
+
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].move_speed_ : ErrorMessageFloat(id);
     }
 
-    Dictionary<int, Parameter> parameters_ = new Dictionary<int, Parameter>();
+    public float GetSwingSpeed(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].swing_speed_ : ErrorMessageFloat(id);
+    }
+
+    public float GetBoostPower(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].boost_power_ : ErrorMessageFloat(id);
+    }
+
+    public float GetJumpPower(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].jump_power_ : ErrorMessageFloat(id);
+    }
+
+    public float GetMaxBoostValue(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].max_boost_value_ : ErrorMessageFloat(id);
+    }
+
+    public float GetMaxHP(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].max_hp_ : ErrorMessageFloat(id);
+    }
+
+    public float GetArmorValue(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].armor_value_ : ErrorMessageFloat(id);
+    }
+
+    public string GetName(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].name_ : ErrorMessageString(id);
+    }
+
+    public string GetExplanatoryText(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].explanatory_text_ : ErrorMessageString(id);
+    }
 
     void Awake()
     {
@@ -50,4 +84,39 @@ public class AirframeParameter : MonoBehaviour
             parameters_.Add(temp_parameter.id_, temp_parameter);
         }
     }
+
+    // いい方法が思いつかない……
+    float ErrorMessageFloat(int id)
+    {
+        Debug.Log("ID：" + id.ToString() + "は存在しません");
+        return 0.0f;
+    }
+
+    string ErrorMessageString(int id)
+    {
+        Debug.Log("ID：" + id.ToString() + "は存在しません");
+        return "error";
+    }
+
+
+    const string JSON_PATH = "/TempResources/Json/";
+
+    [SerializeField]
+    string JSON_FILE_NAME = "";
+
+    struct Parameter
+    {
+        public int id_;
+        public float move_speed_;
+        public float swing_speed_;
+        public float boost_power_;
+        public float jump_power_;
+        public float max_boost_value_;
+        public float max_hp_;
+        public float armor_value_;
+        public string name_;
+        public string explanatory_text_;
+    }
+
+    Dictionary<int, Parameter> parameters_ = new Dictionary<int, Parameter>();
 }
