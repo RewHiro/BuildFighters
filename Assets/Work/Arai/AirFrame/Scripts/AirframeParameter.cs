@@ -10,6 +10,18 @@ public class AirFrameParameter : MonoBehaviour
     [SerializeField]
     string JSON_FILE_NAME = "";
 
+    public float GetMass(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].mass_ : ErrorMessageFloat(id);
+    }
+
+    public float GetDrag(int id)
+    {
+        return parameters_.ContainsKey(id) ?
+            parameters_[id].drag_ : ErrorMessageFloat(id);
+    }
+
     public float GetMoveSpeed(int id)
     {
         return parameters_.ContainsKey(id) ?
@@ -73,6 +85,8 @@ public class AirFrameParameter : MonoBehaviour
         {
             Parameter temp_parameter;
             temp_parameter.id_ = (int)parameter["ID"].Get<long>();
+            temp_parameter.mass_ = (float)parameter["Mass"].Get<double>();
+            temp_parameter.drag_ = (float)parameter["Drag"].Get<double>();
             temp_parameter.move_speed_ = (float)parameter["MoveSpeed"].Get<double>();
             temp_parameter.swing_speed_ = (float)parameter["SwingSpeed"].Get<double>();
             temp_parameter.boost_power_ = (float)parameter["BoostPower"].Get<double>();
@@ -82,6 +96,7 @@ public class AirFrameParameter : MonoBehaviour
             temp_parameter.armor_value_ = (float)parameter["ArmorValue"].Get<double>();
             temp_parameter.name_ = parameter["Name"].Get<string>();
             temp_parameter.explanatory_text_ = parameter["ExplanatoryText"].Get<string>();
+            
 
             parameters_.Add(temp_parameter.id_, temp_parameter);
         }
@@ -103,6 +118,8 @@ public class AirFrameParameter : MonoBehaviour
     struct Parameter
     {
         public int id_;
+        public float mass_;
+        public float drag_;
         public float move_speed_;
         public float swing_speed_;
         public float boost_power_;
