@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
         var id = GetComponent<Identificationer>().id;
 
         rigidbody_ = GetComponent<Rigidbody>();
-        rigidbody_.mass = air_frame_parameter.GetMass(id);
-        rigidbody_.drag = air_frame_parameter.GetDrag(id);
+        //rigidbody_.mass = air_frame_parameter.GetMass(id);
+        //rigidbody_.drag = air_frame_parameter.GetDrag(id);
 
         move_speed_ = air_frame_parameter.GetMoveSpeed(id);
         swing_speed_ = air_frame_parameter.GetSwingSpeed(id);
@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //　FixMe
+    //　乗ったかどうか判定したい
+    //　壁にあたったときもジャンプのフラグがoffになってしまう
+    
+    //　Tagつけまだ全てやってない
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.GetHashCode() != GROUND_TAG_HASH) return;
