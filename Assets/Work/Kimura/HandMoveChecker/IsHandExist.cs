@@ -6,12 +6,10 @@ public class IsHandExist : MonoBehaviour {
 
     SkeletalHand[] skeletal_hand_;
 
-    bool once_position_unification_;
 
 
     void Start ()
     {
-        once_position_unification_ = false;
 
     }
 
@@ -37,20 +35,4 @@ public class IsHandExist : MonoBehaviour {
         
     }
 
-   public bool HandAppearOrVanish()
-    {
-        if (IsExistence() == true
-            && once_position_unification_ == false)
-        {
-            once_position_unification_ = true;
-        }
-        else
-        if (IsExistence() == false
-            && once_position_unification_ == true)
-        {
-            once_position_unification_ = false;
-        }
-
-       return once_position_unification_;
-    }
 }
