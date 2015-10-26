@@ -6,8 +6,12 @@ public class IsHandExist : MonoBehaviour {
 
     SkeletalHand[] skeletal_hand_;
 
-	void Start ()
+    bool once_position_unification_;
+
+
+    void Start ()
     {
+        once_position_unification_ = false;
 
     }
 
@@ -22,7 +26,6 @@ public class IsHandExist : MonoBehaviour {
 
         if (skeletal_hand_.Length == 0)
         {
-            Debug.Log("hoge");
             return false;
         }
         else
@@ -32,5 +35,22 @@ public class IsHandExist : MonoBehaviour {
 
 
         
+    }
+
+   public bool HandAppearOrVanish()
+    {
+        if (IsExistence() == true
+            && once_position_unification_ == false)
+        {
+            once_position_unification_ = true;
+        }
+        else
+        if (IsExistence() == false
+            && once_position_unification_ == true)
+        {
+            once_position_unification_ = false;
+        }
+
+       return once_position_unification_;
     }
 }
