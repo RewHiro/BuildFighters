@@ -19,6 +19,10 @@ public class RocketPlayer : MonoBehaviour
         {
             transform.position += transform.forward;
         }
+        if (Input.GetKey("down"))
+        {
+            transform.position -= transform.forward;
+        }
 
         if (Input.GetKey("right"))
         {
