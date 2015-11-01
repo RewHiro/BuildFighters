@@ -20,9 +20,15 @@ public class PlayerAttacker : MonoBehaviour
 
     void AttackWithWeapon(bool input,Weapon weapon)
     {
-        if (!input) return;
         if (weapon == null) throw new Exception();
-        weapon.Attack();
+        if (input)
+        {
+            weapon.OnAttack();
+        }
+        else
+        {
+            weapon.OnNotAttack();
+        }
     }
 
 

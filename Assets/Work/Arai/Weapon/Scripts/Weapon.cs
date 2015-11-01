@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour
 {
-    virtual public void Attack() { }
+    virtual public void OnAttack() { }
+    virtual public void OnNotAttack() { }
 
     protected int id_ = 0;
     protected string name_ = "";
