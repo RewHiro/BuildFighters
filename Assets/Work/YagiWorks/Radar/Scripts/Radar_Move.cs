@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Radar_Move : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
@@ -16,6 +15,10 @@ public class Radar_Move : MonoBehaviour
         {
             transform.position += transform.forward ;
         }
+        if (Input.GetKey("down"))
+        {
+            transform.position -= transform.forward;
+        }
 
         if (Input.GetKey("right"))
         {
@@ -25,5 +28,6 @@ public class Radar_Move : MonoBehaviour
         {
             transform.Rotate(0, -5, 0);
         }
+       
     }
 }
