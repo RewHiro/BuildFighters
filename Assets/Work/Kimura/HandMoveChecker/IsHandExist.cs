@@ -3,18 +3,11 @@ using System.Collections;
 
 public class IsHandExist : MonoBehaviour {
 
-
     SkeletalHand[] skeletal_hand_;
-
-
 
     void Start ()
     {
 
-    }
-
-    void Update ()
-    {
     }
 
    public bool IsExistence()
@@ -22,17 +15,9 @@ public class IsHandExist : MonoBehaviour {
         skeletal_hand_ = GetComponentsInChildren<SkeletalHand>();
 
 
-        if (skeletal_hand_.Length == 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        if (!(skeletal_hand_.Length == 0)) return true;
 
-
-        
+        return false;
     }
 
 }
