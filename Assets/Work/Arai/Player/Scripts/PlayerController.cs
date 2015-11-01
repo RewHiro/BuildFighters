@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    #region vertical propery
+    #region vertical property
     #region advance property
     public bool isInputForwardMovement
     {
@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region horizontal propery
-    #region rightmove propery
+    #region horizontal property
+    #region rightmove property
     public bool isInputRightMovement
     {
         get
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region rotate propery
+    #region rotate property
 
     public float getRotateValue
     {
@@ -108,13 +108,13 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region jump propery
+    #region jump property
 
     public bool isInputJump
     {
         get
         {
-            return getJumpValue == 1.0f;  
+            return getJumpValue == 1.0f;
         }
     }
 
@@ -127,4 +127,45 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    #region fire property
+
+    #region right
+
+    public bool isInputRightAttack
+    {
+        get
+        {
+            return Input.GetMouseButton(1);
+        }
+    }
+
+    #endregion
+
+    #region left
+
+    public bool isInputLeftAttack
+    {
+        get
+        {
+            return Input.GetMouseButton(0);
+        }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region boost property
+
+    public bool isInputBoost
+    {
+        get
+        {
+            return Input.GetKey(KeyCode.LeftShift);
+        }
+    }
+
+    #endregion
+
 }
