@@ -6,7 +6,7 @@
             "Drag": 0.0,
             "MoveSpeed": 0.5,
             "SwingSpeed": 2.5,
-            "BoostPower": 1.0,
+            "BoostPower": 5.0,
             "JumpPower": 20.0,
             "MaxBoostValue": 100.0,
             "MaxHP": 100.0,
