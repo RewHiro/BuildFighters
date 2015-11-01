@@ -8,6 +8,8 @@ public class MoveObj : MonoBehaviour
     public BezierPoint p2;
     public float moveTime;
 
+    public string objname = ""; // Inspectorから指定
+   
 
     private float nowTime;
    
@@ -16,6 +18,8 @@ public class MoveObj : MonoBehaviour
     void Start()
     {
         nowTime = 0;
+        GameObject obj = GameObject.Find(objname);
+        p2.transform.position = obj.transform.position;
     }
 
     void Update()
