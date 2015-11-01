@@ -17,12 +17,17 @@ public class AssaultRifle : Weapon
 
     public override void OnAttack()
     {
-        var obj = Instantiate(bullet);
-        obj.transform.position = gameObject.transform.position;
-        obj.transform.Translate(gameObject.transform.forward * 2.5f);
-        Vector3 force;
-        force = gameObject.transform.forward * Speed;
-        obj.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+        if (shot_count_ <= 0.0f)
+        {
+            var obj = Instantiate(bullet);
+            obj.transform.position = gameObject.transform.position;
+            obj.transform.Translate(gameObject.transform.forward * 2.5f);
+            Vector3 force;
+            force = gameObject.transform.forward * Speed;
+            obj.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            shot_count_ = 0.1f;
+        }
+        shot_count_ -= Time.deltaTime;
     }
 
     public override void OnNotAttack()
@@ -31,5 +36,4 @@ public class AssaultRifle : Weapon
     }
 
     float shot_count_ = 0.0f;
-    int temp_count = 6;
 }
