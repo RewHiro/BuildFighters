@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            return getJumpValue == 1.0f;
+            return Input.GetKeyDown(KeyCode.Space);
         }
     }
 
