@@ -10,6 +10,7 @@ public class AirFrameParameterTollManager : MonoBehaviour
     [SerializeField]
     string JSON_FILE_NAME = "";
 
+
     public float GetMass(int id)
     {
         return parameters_.ContainsKey(id) ?
