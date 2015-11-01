@@ -2,6 +2,7 @@
 using System.Collections;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class PlayerController : MonoBehaviour
 {
 
@@ -103,6 +104,13 @@ public class PlayerController : MonoBehaviour
 {
 
     #region vertical property
+=======
+public class PlayerController : MonoBehaviour
+{
+
+
+    #region vertical property
+>>>>>>> 8c4070969c7a0800422d06fd765c81e3170defbd
     #region advance property
     public bool isInputForwardMovement
     {
