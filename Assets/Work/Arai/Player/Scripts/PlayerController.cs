@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
+
     #region vertical property
     #region advance property
     public bool isInputForwardMovement
