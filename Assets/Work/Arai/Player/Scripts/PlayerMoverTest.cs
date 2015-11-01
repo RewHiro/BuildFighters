@@ -57,7 +57,7 @@ public class PlayerMoverTest : MonoBehaviour
         }
 
         gameObject.transform.localPosition +=
-            direction.normalized * MOVE_SPEED * slope * boost_value;
+            direction.normalized * MOVE_SPEED * slope * boost_value * Time.deltaTime;
     }
 
     PlayerController player_controller_ = null;
