@@ -8,7 +8,7 @@ public class CreateBullet : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown("space")) Instantiate(bullet, transform.position, transform.rotation);
+      //  if (Input.GetKeyDown("space")) Instantiate(bullet, transform.position, transform.rotation);
 
     }
 }

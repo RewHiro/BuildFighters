@@ -20,9 +20,14 @@ public class MoveObj : MonoBehaviour
 
     void Update()
     {
-        if (movenumber==0&&Input.GetKeyDown("space"))
+        if (movenumber == 0)
         {
-            movenumber=1;
+            Vector3 currentPoint = BezierCurve.GetPoint(p0,p0,nowTime);
+            transform.position = currentPoint;
+            if (Input.GetKeyDown("space"))
+            {
+                movenumber = 1;
+            }
         }
 
         if (movenumber!=0)
