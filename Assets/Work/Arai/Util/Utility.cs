@@ -3,5 +3,5 @@ using System.Collections;
 
 public class Utility : MonoBehaviour
 {
-    public static readonly string JSON_PATH = Application.dataPath + "/Resources/Json/";
+    public static readonly string JSON_PATH = Application.dataPath + "/Json/";
 }
