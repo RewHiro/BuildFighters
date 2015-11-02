@@ -14,7 +14,7 @@ public class LeftHandInput : MonoBehaviour
     float REACTION_VALUE = 0.1f;
 
     [SerializeField]
-    float REACTION_GRAB_VALUE = 0.5f;
+    float REACTION_GRAB_VALUE = 1.0f;
 
     public float getHorizaontalValue
     {
@@ -84,7 +84,7 @@ public class LeftHandInput : MonoBehaviour
     {
         get
         {
-            return hand_model_.GetLeapHand().GrabStrength > REACTION_GRAB_VALUE;
+            return hand_model_.GetLeapHand().GrabStrength >= REACTION_GRAB_VALUE;
         }
     }
 
