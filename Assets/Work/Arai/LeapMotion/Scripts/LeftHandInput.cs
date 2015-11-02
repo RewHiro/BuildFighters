@@ -92,6 +92,10 @@ public class LeftHandInput : MonoBehaviour
     {
         hand_model_ = GetComponent<HandModel>();
         FindObjectOfType<PlayerController>().SetLeftHandInput(this);
+
+        var parameter = FindObjectOfType<LeapMotionParameter>();
+        REACTION_VALUE = parameter.getReactionValue;
+        reference_point_ = parameter.getReferencePoint;
     }
 
     HandModel hand_model_ = null;
