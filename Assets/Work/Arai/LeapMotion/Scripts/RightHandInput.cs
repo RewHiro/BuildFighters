@@ -9,7 +9,11 @@ public class RightHandInput : MonoBehaviour
 
     float reference_point_ = -100.0f;
 
-    float reaction_value = 0.1f;
+    [SerializeField]
+    float REACTION_VALUE = 0.1f;
+
+    [SerializeField]
+    float REACTION_GRAB_VALUE = 0.5f;
 
     public float getHorizaontalValue
     {
@@ -18,7 +22,7 @@ public class RightHandInput : MonoBehaviour
             var point = reference_point_ + hand_model_.GetLeapHand().PalmPosition.x;
             point *= ratio_;
             point = Mathf.Clamp(point, -1.0f, 1.0f);
-            if (reaction_value > point && -reaction_value < point) return 0.0f;
+            if (REACTION_VALUE > point && -REACTION_VALUE < point) return 0.0f;
             return point;
         }
     }
@@ -29,7 +33,7 @@ public class RightHandInput : MonoBehaviour
         {
             var point = -hand_model_.GetLeapHand().PalmPosition.z * ratio_;
             point = Mathf.Clamp(point, -1.0f, 1.0f);
-            if (reaction_value > point && -reaction_value < point) return 0.0f;
+            if (REACTION_VALUE > point && -REACTION_VALUE < point) return 0.0f;
             return point;
         }
     }
@@ -79,7 +83,7 @@ public class RightHandInput : MonoBehaviour
     {
         get
         {
-            return hand_model_.GetLeapHand().GrabStrength > 0.5f;
+            return hand_model_.GetLeapHand().GrabStrength > REACTION_GRAB_VALUE;
         }
     }
 
