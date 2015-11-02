@@ -9,8 +9,6 @@ using System;
 public class AirFrameParameter : MonoBehaviour
 {
 
-    const string JSON_PATH = "/TempResources/Json/";
-
     [SerializeField]
     string JSON_FILE_NAME = "";
 
@@ -84,7 +82,7 @@ public class AirFrameParameter : MonoBehaviour
     {
         JsonMapper.RegisterExporter<float>((obj, writer) => writer.Write(Convert.ToDouble(obj)));
 
-        var json_text = File.ReadAllText(Application.dataPath + JSON_PATH + JSON_FILE_NAME);
+        var json_text = File.ReadAllText(Utility.JSON_PATH + JSON_FILE_NAME);
         var json_data = JsonMapper.ToObject(json_text);
         var parameters = json_data["Parameters"];
 

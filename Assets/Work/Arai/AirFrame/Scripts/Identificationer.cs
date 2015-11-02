@@ -4,8 +4,6 @@ using System.IO;
 public class Identificationer : MonoBehaviour
 {
 
-    const string JSON_PATH = "/TempResources/Json/";
-
     [SerializeField]
     string JSON_FILE_NAME = "";
 
@@ -23,7 +21,7 @@ public class Identificationer : MonoBehaviour
 
     void ReadJson()
     {
-        var json_text = File.ReadAllText(Application.dataPath + JSON_PATH + JSON_FILE_NAME);
+        var json_text = File.ReadAllText(Utility.JSON_PATH + JSON_FILE_NAME);
         JsonNode json = JsonNode.Parse(json_text);
         id_ = (int)json["Player"].Get<long>();
         if (id_ < 0) id_ = 0;
