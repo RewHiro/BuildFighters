@@ -11,16 +11,9 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (Input.GetAxis("Vertical") <= 0.0f) return false;
-            return true;
+            if (leap_contoller_.IsConnected) return isBothHandsFront;
+            return Input.GetAxis("Vertical") <= 0.0f;
         }
-    }
-
-    public bool IsInputForwardMovement(out float value)
-    {
-        value = Input.GetAxis("Vertical");
-        if (value <= 0.0f) return false;
-        return true;
     }
     #endregion
 
@@ -29,46 +22,32 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (Input.GetAxis("Vertical") >= 0.0f) return false;
-            return true;
+            if (leap_contoller_.IsConnected) return isBothHandsBack;
+            return Input.GetAxis("Vertical") >= 0.0f;
         }
     }
 
-    public bool IsInputBackwardMovement(out float value)
-    {
-        value = Input.GetAxis("Vertical");
-        if (value >= 0.0f) return false;
-        return true;
-    }
     #endregion
 
     public float getInputVerticalValue
     {
         get
         {
-            if (left_hand_input_ == null ||
-                right_hand_input_ == null)
-                return 0.0f;
+            if (!leap_contoller_.IsConnected) return Input.GetAxis("Vertical");
 
-            if (leap_contoller_.IsConnected)
+            if (isBothHandsFront)
             {
-                if (left_hand_input_.isFront && right_hand_input_.isFront)
-                {
-                    return Mathf.Max(left_hand_input_.getVerticalValue, right_hand_input_.getVerticalValue);
-                }
-                else if (left_hand_input_.isBack && right_hand_input_.isBack)
-                {
-                    return Mathf.Min(left_hand_input_.getVerticalValue, right_hand_input_.getVerticalValue);
-                }
-                else
-                {
-                    return 0.0f;
-                }
+                return Mathf.Max(left_hand_input_.getVerticalValue, right_hand_input_.getVerticalValue);
+            }
+            else if (isBothHandsBack)
+            {
+                return Mathf.Min(left_hand_input_.getVerticalValue, right_hand_input_.getVerticalValue);
             }
             else
             {
-                return Input.GetAxis("Vertical");
+                return 0.0f;
             }
+
         }
     }
     #endregion
@@ -79,62 +58,42 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (Input.GetAxis("Horizontal") <= 0.0f) return false;
-            return true;
+            if (leap_contoller_.IsConnected) return isBothHandsRight;
+            return Input.GetAxis("Horizontal") <= 0.0f;
         }
     }
 
-    public bool IsInputRightMovement(out float value)
-    {
-        value = Input.GetAxis("Horizontal");
-        if (value <= 0.0f) return false;
-        return true;
-    }
     #endregion
 
-    #region reverse property
+    #region leftmove property
     public bool isInputLeftMovement
     {
         get
         {
-            if (Input.GetAxis("Horizontal") <= 0.0f) return false;
-            return true;
+            if (leap_contoller_.IsConnected) return isBothHandsLeft;
+            return Input.GetAxis("Horizontal") <= 0.0f;
         }
     }
 
-    public bool IsInputLeftMovement(out float value)
-    {
-        value = Input.GetAxis("Horizontal");
-        if (value <= 0.0f) return false;
-        return true;
-    }
     #endregion
 
     public float getInputHorizontalValue
     {
         get
         {
-            if (left_hand_input_ == null ||
-                right_hand_input_ == null)
-                return 0.0f;
-            if (leap_contoller_.IsConnected)
+            if (!leap_contoller_.IsConnected) return Input.GetAxis("Horizontal");
+
+            if (isBothHandsRight)
             {
-                if (left_hand_input_.isRight && right_hand_input_.isRight)
-                {
-                    return Mathf.Max(left_hand_input_.getHorizaontalValue, right_hand_input_.getHorizaontalValue);
-                }
-                else if (left_hand_input_.isLeft && right_hand_input_.isLeft)
-                {
-                    return Mathf.Min(left_hand_input_.getHorizaontalValue, right_hand_input_.getHorizaontalValue);
-                }
-                else
-                {
-                    return 0.0f;
-                }
+                return Mathf.Max(left_hand_input_.getHorizaontalValue, right_hand_input_.getHorizaontalValue);
+            }
+            else if (isBothHandsLeft)
+            {
+                return Mathf.Min(left_hand_input_.getHorizaontalValue, right_hand_input_.getHorizaontalValue);
             }
             else
             {
-                return Input.GetAxis("Horizontal");
+                return 0.0f;
             }
         }
     }
@@ -147,29 +106,22 @@ public class PlayerController : MonoBehaviour
         get
         {
 
-            if (left_hand_input_ == null ||
-                    right_hand_input_ == null)
-                     return 0.0f;
+            if (!leap_contoller_.IsConnected) return Input.GetAxis("Rotate");
+            if (NullCheck()) return 0.0f;
 
-            if (leap_contoller_.IsConnected)
+            if (left_hand_input_.isFront && right_hand_input_.isBack)
             {
-                if (left_hand_input_.isFront && right_hand_input_.isBack)
-                {
-                    return left_hand_input_.getVerticalValue;
-                }
-                else if (left_hand_input_.isBack && right_hand_input_.isFront)
-                {
-                    return -right_hand_input_.getVerticalValue;
-                }
-                else
-                {
-                    return 0.0f;
-                }
+                return left_hand_input_.getVerticalValue;
+            }
+            else if (left_hand_input_.isBack && right_hand_input_.isFront)
+            {
+                return -right_hand_input_.getVerticalValue;
             }
             else
             {
-                return Input.GetAxis("Rotate");
+                return 0.0f;
             }
+
         }
     }
 
@@ -181,33 +133,14 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (right_hand_input_ == null ||
-                left_hand_input_ == null)
-                return false;
-            if (leap_contoller_.IsConnected)
-            {
-                if (right_hand_input_.isRight && left_hand_input_.isLeft)
-                {
-                    if (right_hand_input_.getHorizaontalValue > 0.3f &&
-                        left_hand_input_.getHorizaontalValue < -0.3f)
-                    {
 
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return Input.GetKeyDown(KeyCode.Space);
-            }
+            if (!leap_contoller_.IsConnected) return Input.GetKeyDown(KeyCode.Space);
+            if (NullCheck()) return false;
+            if (!(right_hand_input_.isRight && left_hand_input_.isLeft)) return false;
+
+            if (!(right_hand_input_.getHorizaontalValue > 0.3f &&
+                left_hand_input_.getHorizaontalValue < -0.3f)) return false;
+            return true;
         }
     }
 
@@ -229,15 +162,9 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if (right_hand_input_ == null)return false;
-            if (leap_contoller_.IsConnected)
-            {
-                return right_hand_input_.isGrabed;
-            }
-            else
-            {
-                return Input.GetMouseButton(1);
-            }
+            if (!leap_contoller_.IsConnected) return Input.GetMouseButton(1);
+            if (right_hand_input_ == null) return false;
+            return right_hand_input_.isGrabed;
         }
     }
 
@@ -249,15 +176,9 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
+            if (!leap_contoller_.IsConnected) return Input.GetMouseButton(0);
             if (left_hand_input_ == null) return false;
-            if (leap_contoller_.IsConnected)
-            {
-                return left_hand_input_.isGrabed;
-            }
-            else
-            {
-                return Input.GetMouseButton(0);
-            }
+            return left_hand_input_.isGrabed;
         }
     }
 
@@ -291,6 +212,47 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         leap_contoller_ = FindObjectOfType<HandController>().GetLeapController();
+    }
+
+    bool NullCheck()
+    {
+        return right_hand_input_ == null || left_hand_input_ == null;
+    }
+
+    bool isBothHandsFront
+    {
+        get
+        {
+            if (NullCheck()) return false;
+            return left_hand_input_.isFront && right_hand_input_.isFront;
+        }
+    }
+
+    bool isBothHandsBack
+    {
+        get
+        {
+            if (NullCheck()) return false;
+            return left_hand_input_.isBack && right_hand_input_.isBack;
+        }
+    }
+
+    bool isBothHandsRight
+    {
+        get
+        {
+            if (NullCheck()) return false;
+            return left_hand_input_.isRight && right_hand_input_.isRight;
+        }
+    }
+
+    bool isBothHandsLeft
+    {
+        get
+        {
+            if (NullCheck()) return false;
+            return left_hand_input_.isLeft && right_hand_input_.isLeft;
+        }
     }
 
     Controller leap_contoller_ = null;
