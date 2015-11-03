@@ -1,0 +1,70 @@
+<<<<<<< HEAD
+﻿{
+    "Parameters": [
+        {
+            "ID": 0,
+            "Mass": 1.0,
+            "Drag": 0.0,
+            "MoveSpeed": 0.15,
+            "SwingSpeed": 2.5,
+            "BoostPower": 1.0,
+            "JumpPower": 20.0,
+            "MaxBoostValue": 100.0,
+            "MaxHP": 100.0,
+            "ArmorValue": 100.0,
+            "Name": "Default00",
+            "ExplanatoryText": "デフォルト機体00"
+        },
+
+        {
+            "ID": 1,
+            "Mass": 1.0,
+            "Drag": 0.0,
+            "MoveSpeed": 1.0,
+            "SwingSpeed": 1.0,
+            "BoostPower": 1.0,
+            "JumpPower": 1.0,
+            "MaxBoostValue": 100.0,
+            "MaxHP": 100.0,
+            "ArmorValue": 100.0,
+            "Name": "Default01",
+            "ExplanatoryText": "デフォルト機体01"
+        }
+    ]
+}
+=======
+{
+    "Parameters": [
+        {
+            "ID": 0,
+            "Mass": 1.0,
+            "Drag": 0.0,
+            "MoveSpeed": 20.0,
+            "SwingSpeed": 150.0,
+            "BoostPower": 5.0,
+            "JumpPower": 20.0,
+            "MaxBoostValue": 100.0,
+            "MaxHP": 100.0,
+            "ArmorValue": 100.0,
+            "Name": "Default00",
+            "ExplanatoryText": "デフォルト機体00"
+        },
+
+        {
+            "ID": 1,
+            "Mass": 1.0,
+            "Drag": 0.0,
+            "MoveSpeed": 1.0,
+            "SwingSpeed": 1.0,
+            "BoostPower": 1.0,
+            "JumpPower": 1.0,
+            "MaxBoostValue": 100.0,
+            "MaxHP": 100.0,
+            "ArmorValue": 100.0,
+            "Name": "Default01",
+            "ExplanatoryText": "デフォルト機体01"
+        }
+    ]
+}
+
+>>>>>>> 78d4c541c4e330f3c961aff46eadae90b1a125e2
