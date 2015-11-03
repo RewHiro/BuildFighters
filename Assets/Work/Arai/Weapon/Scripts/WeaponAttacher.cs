@@ -28,6 +28,6 @@ public class WeaponAttacher : MonoBehaviour
     void Awake()
     {
         right_weapon_.AddComponent<AssaultRifle>();
-        left_weapon_.AddComponent<AssaultRifle>();
+        left_weapon_.AddComponent<RocketTest>();
     }
 }
