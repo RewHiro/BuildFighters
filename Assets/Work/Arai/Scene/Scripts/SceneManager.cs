@@ -37,6 +37,7 @@ public class SceneManager : MonoBehaviour
     public void Trasition(Type type)
     {
         type_ = type;
+        fade_status_ = FadeStatus.FADE_OUT;
         var background = GameObject.FindGameObjectWithTag("Background");
         if (background == null) throw new System.Exception();
         background_ = background.GetComponent<Image>();
@@ -46,18 +47,17 @@ public class SceneManager : MonoBehaviour
     {
         scene_list_ = datas_.ToDictionary(data => data.type_, data => data.scene_);
 
-        scene_ = scene_list_.ContainsKey(type_) ? scene_list_[type_] : scene_list_[Type.TITLE];
+        var scene = scene_list_.ContainsKey(type_) ? scene_list_[type_] : scene_list_[Type.TITLE];
 
-        var scene = Instantiate(scene_);
-        scene.name = scene_list_[type_].name;
+        scene_ = Instantiate(scene);
+
+        scene_.name = scene_list_[type_].name;
 
     }
 
     void Start()
     {
-        var background = GameObject.FindGameObjectWithTag("Background");
-        if (background == null) throw new System.Exception();
-        background_ = background.GetComponent<Image>();
+        FindBackgroundImage();
     }
 
     void Update()
@@ -70,18 +70,42 @@ public class SceneManager : MonoBehaviour
     void FadeOut()
     {
         if (FadeStatus.FADE_OUT != fade_status_) return;
+        alpha_ += Time.deltaTime;
+        if (alpha_ >= 1.0f)
+        {
+            fade_status_ = FadeStatus.FADE_IN;
+            alpha_ = 1.0f;
+            Destroy(scene_);
+
+            var scene = scene_list_[type_];
+
+            scene_ = Instantiate(scene);
+        }
+        background_.color = new Color(0, 0, 0, alpha_);
     }
 
     void FadeIn()
     {
         if (FadeStatus.FADE_IN != fade_status_) return;
+
+
+        FindBackgroundImage();
+
         alpha_ += -Time.deltaTime;
-        if (alpha_ >= 1.0f)
+        if (alpha_ <= 0.0f)
         {
             fade_status_ = FadeStatus.STOP;
-            alpha_ = 1.0f;
+            alpha_ = 0.0f;
         }
         background_.color = new Color(0, 0, 0, alpha_);
+    }
+
+    void FindBackgroundImage()
+    {
+        if (background_ != null) return;
+        var background = GameObject.FindGameObjectWithTag("Background");
+        if (background == null) throw new System.Exception();
+        background_ = background.GetComponent<Image>();
     }
 
     Dictionary<Type, GameObject> scene_list_ = new Dictionary<Type, GameObject>();
