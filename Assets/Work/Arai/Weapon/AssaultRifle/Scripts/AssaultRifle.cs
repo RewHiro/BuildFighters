@@ -22,6 +22,7 @@ public class AssaultRifle : Weapon
             var obj = Instantiate(bullet);
             obj.transform.position = gameObject.transform.position;
             obj.transform.Translate(gameObject.transform.forward * 2.5f);
+            obj.transform.rotation = gameObject.transform.rotation;
             Vector3 force;
             force = gameObject.transform.forward * Speed;
             obj.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
