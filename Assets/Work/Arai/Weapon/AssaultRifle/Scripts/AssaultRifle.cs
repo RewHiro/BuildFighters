@@ -12,7 +12,7 @@ public class AssaultRifle : Weapon
 
     void Start()
     {
-        bullet = FindObjectOfType<BulletCreater>().getBullet;
+        bullet = FindObjectOfType<BulletCreater>().getAssaulutBullet;
     }
 
     public override void OnAttack()
