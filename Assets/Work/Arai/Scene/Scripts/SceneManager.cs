@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 
 public class SceneManager : MonoBehaviour
 {
@@ -38,9 +39,7 @@ public class SceneManager : MonoBehaviour
     {
         type_ = type;
         fade_status_ = FadeStatus.FADE_OUT;
-        var background = GameObject.FindGameObjectWithTag("Background");
-        if (background == null) throw new System.Exception();
-        background_ = background.GetComponent<Image>();
+        FindBackgroundImage();
     }
 
     void Awake()
@@ -70,6 +69,8 @@ public class SceneManager : MonoBehaviour
     void FadeOut()
     {
         if (FadeStatus.FADE_OUT != fade_status_) return;
+        if (background_ == null) return;
+
         alpha_ += Time.deltaTime;
         if (alpha_ >= 1.0f)
         {
@@ -87,9 +88,8 @@ public class SceneManager : MonoBehaviour
     void FadeIn()
     {
         if (FadeStatus.FADE_IN != fade_status_) return;
-
-
         FindBackgroundImage();
+        if (background_ == null) return;
 
         alpha_ += -Time.deltaTime;
         if (alpha_ <= 0.0f)
