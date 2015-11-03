@@ -30,23 +30,18 @@ public class RocketLauncherParameter : MonoBehaviour {
     rocket_launcher_parameter_[id].AttackPower : ErrorMessageFloat(id);
     }
 
-    public float GetMaxAttackPowerRange(int id)
+    public float GetBulletMaxRange(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
-    rocket_launcher_parameter_[id].MaxAttackPowerRange : ErrorMessageFloat(id);
+    rocket_launcher_parameter_[id].BulletMaxRange : ErrorMessageFloat(id);
     }
 
-    public float GetMinAttackPowerRange(int id)
+    public float GetExplosiveRange(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
-    rocket_launcher_parameter_[id].MinAttackPowerRange : ErrorMessageFloat(id);
+    rocket_launcher_parameter_[id].ExplosiveRange : ErrorMessageFloat(id);
     }
 
-    public float GetFiringSpeed(int id)
-    {
-        return rocket_launcher_parameter_.ContainsKey(id) ?
-    rocket_launcher_parameter_[id].FiringSpeed : ErrorMessageFloat(id);
-    }
 
     public int GetBulletsNumber(int id)
     {
@@ -66,20 +61,6 @@ public class RocketLauncherParameter : MonoBehaviour {
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
     rocket_launcher_parameter_[id].ReloadTime : ErrorMessageFloat(id);
-
-    }
-
-    public float GetVariability(int id)
-    {
-        return rocket_launcher_parameter_.ContainsKey(id) ?
-    rocket_launcher_parameter_[id].Variability : ErrorMessageFloat(id);
-
-    }
-
-    public int GetHitAccuracy(int id)
-    {
-        return rocket_launcher_parameter_.ContainsKey(id) ?
-    rocket_launcher_parameter_[id].HitAccuracy : ErrorMessageInt(id);
 
     }
 
@@ -117,15 +98,13 @@ public class RocketLauncherParameter : MonoBehaviour {
             temp_rocket_launcher_parameter_.ID = (int)parameters[i]["ID"];
             temp_rocket_launcher_parameter_.Name = (string)parameters[i]["Name"];
             temp_rocket_launcher_parameter_.AttackPower = (float)(double)parameters[i]["AttackPower"];
-            temp_rocket_launcher_parameter_.MaxAttackPowerRange = (float)(double)parameters[i]["MaxAttackPowerRange"];
-            temp_rocket_launcher_parameter_.MinAttackPowerRange = (float)(double)parameters[i]["MinAttackPowerRange"];
-            temp_rocket_launcher_parameter_.FiringSpeed = (float)(double)parameters[i]["FiringSpeed"];
+            temp_rocket_launcher_parameter_.BulletMaxRange = (float)(double)parameters[i]["BulletMaxRange"];
+            temp_rocket_launcher_parameter_.ExplosiveRange = (float)(double)parameters[i]["ExplosiveRange"];
             temp_rocket_launcher_parameter_.BulletsNumber = (int)parameters[i]["BulletsNumber"];
             temp_rocket_launcher_parameter_.BulletSpeed = (float)(double)parameters[i]["BulletSpeed"];
             temp_rocket_launcher_parameter_.ReloadTime = (float)(double)parameters[i]["ReloadTime"];
-            temp_rocket_launcher_parameter_.Variability = (float)(double)parameters[i]["Variability"];
-            temp_rocket_launcher_parameter_.HitAccuracy = (int)parameters[i]["HitAccuracy"];
             temp_rocket_launcher_parameter_.ExplanatoryText = (string)parameters[i]["ExplanatoryText"];
+
 
             rocket_launcher_parameter_.Add(temp_rocket_launcher_parameter_.ID, temp_rocket_launcher_parameter_);
             weapon_parameters_test_.Add(temp_rocket_launcher_parameter_);
@@ -145,16 +124,12 @@ public class RocketLauncherParameter : MonoBehaviour {
         public int ID;
         public string Name;
         public float AttackPower;
-        public float MaxAttackPowerRange;
-        public float MinAttackPowerRange;
-        public float FiringSpeed;
+        public float BulletMaxRange;
+        public float ExplosiveRange;
         public int BulletsNumber;
         public float BulletSpeed;
         public float ReloadTime;
-        public float Variability;
-        public int HitAccuracy;
         public string ExplanatoryText;
-
     }
 
     Dictionary<string, List<WeaponRocketLauncherParameter>> json_ = new Dictionary<string, List<WeaponRocketLauncherParameter>>();

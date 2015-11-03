@@ -30,23 +30,18 @@ public class HomingMissileParameter : MonoBehaviour {
     homing_missile_parameter_[id].AttackPower : ErrorMessageFloat(id);
     }
 
-    public float GetMaxAttackPowerRange(int id)
+    public float GetBulletMaxRange(int id)
     {
         return homing_missile_parameter_.ContainsKey(id) ?
-    homing_missile_parameter_[id].MaxAttackPowerRange : ErrorMessageFloat(id);
+    homing_missile_parameter_[id].BulletMaxRange : ErrorMessageFloat(id);
     }
 
-    public float GetMinAttackPowerRange(int id)
+    public float GetExplosiveRange(int id)
     {
         return homing_missile_parameter_.ContainsKey(id) ?
-    homing_missile_parameter_[id].MinAttackPowerRange : ErrorMessageFloat(id);
+    homing_missile_parameter_[id].ExplosiveRange : ErrorMessageFloat(id);
     }
 
-    public float GetFiringSpeed(int id)
-    {
-        return homing_missile_parameter_.ContainsKey(id) ?
-    homing_missile_parameter_[id].FiringSpeed : ErrorMessageFloat(id);
-    }
 
     public int GetBulletsNumber(int id)
     {
@@ -69,17 +64,10 @@ public class HomingMissileParameter : MonoBehaviour {
 
     }
 
-    public float GetVariability(int id)
+    public float GetLockOnTime(int id)
     {
         return homing_missile_parameter_.ContainsKey(id) ?
-    homing_missile_parameter_[id].Variability : ErrorMessageFloat(id);
-
-    }
-
-    public int GetHitAccuracy(int id)
-    {
-        return homing_missile_parameter_.ContainsKey(id) ?
-    homing_missile_parameter_[id].HitAccuracy : ErrorMessageInt(id);
+    homing_missile_parameter_[id].LockOnTime : ErrorMessageFloat(id);
 
     }
 
@@ -117,15 +105,14 @@ public class HomingMissileParameter : MonoBehaviour {
             temp_homing_missile_parameter.ID = (int)parameters[i]["ID"];
             temp_homing_missile_parameter.Name = (string)parameters[i]["Name"];
             temp_homing_missile_parameter.AttackPower = (float)(double)parameters[i]["AttackPower"];
-            temp_homing_missile_parameter.MaxAttackPowerRange = (float)(double)parameters[i]["MaxAttackPowerRange"];
-            temp_homing_missile_parameter.MinAttackPowerRange = (float)(double)parameters[i]["MinAttackPowerRange"];
-            temp_homing_missile_parameter.FiringSpeed = (float)(double)parameters[i]["FiringSpeed"];
+            temp_homing_missile_parameter.BulletMaxRange = (float)(double)parameters[i]["BulletMaxRange"];
+            temp_homing_missile_parameter.ExplosiveRange = (float)(double)parameters[i]["ExplosiveRange"];
             temp_homing_missile_parameter.BulletsNumber = (int)parameters[i]["BulletsNumber"];
             temp_homing_missile_parameter.BulletSpeed = (float)(double)parameters[i]["BulletSpeed"];
             temp_homing_missile_parameter.ReloadTime = (float)(double)parameters[i]["ReloadTime"];
-            temp_homing_missile_parameter.Variability = (float)(double)parameters[i]["Variability"];
-            temp_homing_missile_parameter.HitAccuracy = (int)parameters[i]["HitAccuracy"];
+            temp_homing_missile_parameter.LockOnTime = (float)(double)parameters[i]["LockOnTime"];
             temp_homing_missile_parameter.ExplanatoryText = (string)parameters[i]["ExplanatoryText"];
+
 
             homing_missile_parameter_.Add(temp_homing_missile_parameter.ID, temp_homing_missile_parameter);
             weapon_parameters_test_.Add(temp_homing_missile_parameter);
@@ -145,16 +132,13 @@ public class HomingMissileParameter : MonoBehaviour {
         public int ID;
         public string Name;
         public float AttackPower;
-        public float MaxAttackPowerRange;
-        public float MinAttackPowerRange;
-        public float FiringSpeed;
+        public float BulletMaxRange;
+        public float ExplosiveRange;
         public int BulletsNumber;
         public float BulletSpeed;
         public float ReloadTime;
-        public float Variability;
-        public int HitAccuracy;
+        public float LockOnTime;
         public string ExplanatoryText;
-
     }
 
     Dictionary<string, List<WeaponHomingMissileParameter>> json_ = new Dictionary<string, List<WeaponHomingMissileParameter>>();
