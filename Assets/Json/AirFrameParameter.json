@@ -7,7 +7,7 @@
             "MoveSpeed": 20.0,
             "SwingSpeed": 50.0,
             "BoostPower": 5.0,
-            "JumpPower": 20.0,
+            "JumpPower": 15.0,
             "MaxBoostValue": 100.0,
             "MaxHP": 100.0,
             "ArmorValue": 100.0,
