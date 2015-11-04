@@ -35,6 +35,9 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     Type type_ = Type.TITLE;
 
+    [SerializeField]
+    GameObject start_scene_ = null;
+
     public void Trasition(Type type)
     {
         type_ = type;
@@ -48,10 +51,7 @@ public class SceneManager : MonoBehaviour
 
         var scene = scene_list_.ContainsKey(type_) ? scene_list_[type_] : scene_list_[Type.TITLE];
 
-        scene_ = Instantiate(scene);
-
-        scene_.name = scene_list_[type_].name;
-
+        scene_ = start_scene_;
     }
 
     void Start()
@@ -81,6 +81,7 @@ public class SceneManager : MonoBehaviour
             var scene = scene_list_[type_];
 
             scene_ = Instantiate(scene);
+            scene_.name = scene_list_[type_].name;
         }
         background_.color = new Color(0, 0, 0, alpha_);
     }
