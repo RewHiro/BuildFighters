@@ -4,6 +4,8 @@ using Leap;
 public class PlayerController : MonoBehaviour
 {
 
+    float REACTION_BOOST_VALUE = 0.8f;
+    float REACTION_JUMP_VALUE = 0.4f;
 
     #region vertical property
     #region advance property
@@ -138,8 +140,8 @@ public class PlayerController : MonoBehaviour
             if (NullCheck()) return false;
             if (!(right_hand_input_.isRight && left_hand_input_.isLeft)) return false;
 
-            if (!(right_hand_input_.getHorizaontalValue > 0.3f &&
-                left_hand_input_.getHorizaontalValue < -0.3f))
+            if (!(right_hand_input_.getHorizaontalValue > REACTION_JUMP_VALUE &&
+                left_hand_input_.getHorizaontalValue < -REACTION_JUMP_VALUE))
                 return false;
             return true;
         }
@@ -196,29 +198,29 @@ public class PlayerController : MonoBehaviour
             if (!leap_contoller_.IsConnected) return Input.GetKey(KeyCode.LeftShift);
             if (isBothHandsFront)
             {
-                if (!(right_hand_input_.getVerticalValue >= 0.7f &&
-                    left_hand_input_.getVerticalValue >= 0.7f))
+                if (!(right_hand_input_.getVerticalValue >= REACTION_BOOST_VALUE &&
+                    left_hand_input_.getVerticalValue >= REACTION_BOOST_VALUE))
                     return false;
                 return true;
             }
             else if (isBothHandsBack)
             {
-                if (!(right_hand_input_.getVerticalValue <= -0.7f &&
-                    left_hand_input_.getVerticalValue <= -0.7f))
+                if (!(right_hand_input_.getVerticalValue <= -REACTION_BOOST_VALUE &&
+                    left_hand_input_.getVerticalValue <= -REACTION_BOOST_VALUE))
                     return false;
                 return true;
             }
             else if (isBothHandsRight)
             {
-                if (!(right_hand_input_.getHorizaontalValue >= 0.7f &&
-                        left_hand_input_.getHorizaontalValue >= 0.7f))
+                if (!(right_hand_input_.getHorizaontalValue >= REACTION_BOOST_VALUE &&
+                        left_hand_input_.getHorizaontalValue >= REACTION_BOOST_VALUE))
                     return false;
                 return true;
             }
             else if (isBothHandsLeft)
             {
-                if (!(right_hand_input_.getHorizaontalValue <= -0.7f &&
-                    left_hand_input_.getHorizaontalValue <= -0.7f))
+                if (!(right_hand_input_.getHorizaontalValue <= -REACTION_BOOST_VALUE &&
+                    left_hand_input_.getHorizaontalValue <= -REACTION_BOOST_VALUE))
                     return false;
                 return true;
             }
@@ -261,6 +263,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         leap_contoller_ = FindObjectOfType<HandController>().GetLeapController();
+        var leap_motion_parameter = FindObjectOfType<LeapMotionParameter>();
+        REACTION_BOOST_VALUE = leap_motion_parameter.getReactionBoostValue;
+        REACTION_JUMP_VALUE = leap_motion_parameter.getReactionJumpValue;
     }
 
 
