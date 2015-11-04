@@ -96,7 +96,7 @@ public class HomingMissileParameter : MonoBehaviour {
 
         var json_text = File.ReadAllText(Utility.JSON_PATH + JSON_FILE_NAME);
         var json_data = JsonMapper.ToObject(json_text);
-        var parameters = json_data["WeaponGatlingGunParameter"];
+        var parameters = json_data["WeaponHomingMissileParameter"];
 
         for (var i = 0; i < parameters.Count; ++i)
         {
@@ -115,15 +115,8 @@ public class HomingMissileParameter : MonoBehaviour {
 
 
             homing_missile_parameter_.Add(temp_homing_missile_parameter.ID, temp_homing_missile_parameter);
-            weapon_parameters_test_.Add(temp_homing_missile_parameter);
 
         }
-        json_.Add("WeaponGatlingGunParameter", weapon_parameters_test_);
-
-        string test = JsonMapper.ToJson(json_);
-
-        Debug.Log(test);
-
 
     }
 
@@ -142,7 +135,6 @@ public class HomingMissileParameter : MonoBehaviour {
     }
 
     Dictionary<string, List<WeaponHomingMissileParameter>> json_ = new Dictionary<string, List<WeaponHomingMissileParameter>>();
-    List<WeaponHomingMissileParameter> weapon_parameters_test_ = new List<WeaponHomingMissileParameter>();
     Dictionary<int, WeaponHomingMissileParameter> homing_missile_parameter_ = new Dictionary<int, WeaponHomingMissileParameter>();
 
 }

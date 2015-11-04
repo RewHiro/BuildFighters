@@ -129,15 +129,8 @@ public class GatlingGunParameter : MonoBehaviour {
             temp_gatling_gun_parameter.ExplanatoryText = (string)parameters[i]["ExplanatoryText"];
 
             gatling_gun_parameters_.Add(temp_gatling_gun_parameter.ID, temp_gatling_gun_parameter);
-            weapon_parameters_test_.Add(temp_gatling_gun_parameter);
 
         }
-        json_.Add("WeaponGatlingGunParameter", weapon_parameters_test_);
-
-        string test = JsonMapper.ToJson(json_);
-
-        Debug.Log(test);
-
 
     }
 
@@ -159,7 +152,6 @@ public class GatlingGunParameter : MonoBehaviour {
     }
 
     Dictionary<string, List<WeaponGatlingGunParameter>> json_ = new Dictionary<string, List<WeaponGatlingGunParameter>>();
-    List<WeaponGatlingGunParameter> weapon_parameters_test_ = new List<WeaponGatlingGunParameter>();
     Dictionary<int, WeaponGatlingGunParameter> gatling_gun_parameters_ = new Dictionary<int, WeaponGatlingGunParameter>();
 
 }
