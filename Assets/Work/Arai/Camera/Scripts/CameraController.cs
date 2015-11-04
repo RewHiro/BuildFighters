@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    readonly Vector2 LIMIT_SLOPE = new Vector2(70.0f, 80.0f);
+    readonly Vector2 LIMIT_SLOPE = new Vector2(20.0f, 80.0f);
 
     [SerializeField]
     float SWING_SPEED = 5.0f;
@@ -15,13 +15,14 @@ public class CameraController : MonoBehaviour
 
         if (mouse_x == 0.0f && mouse_y == 0.0f) return;
 
-        gameObject.transform.Rotate(Vector3.up, mouse_x * SWING_SPEED);
-
         var euler_angles = gameObject.transform.localEulerAngles;
+        euler_angles.y += mouse_x * SWING_SPEED;
+        euler_angles.x += -mouse_y * SWING_SPEED;
 
         euler_angles = ConvertPlsuMinus180(euler_angles);
 
         euler_angles.y = Mathf.Clamp(euler_angles.y, -LIMIT_SLOPE.y, LIMIT_SLOPE.y);
+        euler_angles.x = Mathf.Clamp(euler_angles.x, -LIMIT_SLOPE.x, LIMIT_SLOPE.x);
 
         euler_angles = Convert0To360(euler_angles);
 

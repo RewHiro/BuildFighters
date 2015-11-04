@@ -111,6 +111,14 @@ public class PlayerController : MonoBehaviour
             if (!leap_contoller_.IsConnected) return Input.GetAxis("Rotate");
             if (NullCheck()) return 0.0f;
 
+            //var difference = left_hand_input_.getVerticalValue - right_hand_input_.getVerticalValue;
+            //difference = Mathf.Abs(difference);
+
+            //if (difference < 0.05f) return 0.0f;
+            //if(left_hand_input_.getVerticalValue > right_hand_input_.getVerticalValue) return difference * 3.0f;
+            //return -difference * 3.0f;
+
+
             if (left_hand_input_.isFront && right_hand_input_.isBack)
             {
                 return left_hand_input_.getVerticalValue;

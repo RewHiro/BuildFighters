@@ -12,6 +12,7 @@ public class PlayerMoverTest : MonoBehaviour
 
         MOVE_SPEED = air_frame_parameter.GetMoveSpeed(id);
         BOOST_POWER = air_frame_parameter.GetBoostPower(id);
+
     }
 
     void Update()

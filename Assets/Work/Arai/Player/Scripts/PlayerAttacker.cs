@@ -12,7 +12,7 @@ public class PlayerAttacker : MonoBehaviour
         left_weapon_ = weapon_attacher.getLeftWeapon;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         AttackWithWeapon(player_controller_.isInputRightAttack, right_weapon_);
         AttackWithWeapon(player_controller_.isInputLeftAttack, left_weapon_);
