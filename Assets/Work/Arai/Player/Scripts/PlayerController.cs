@@ -139,7 +139,8 @@ public class PlayerController : MonoBehaviour
             if (!(right_hand_input_.isRight && left_hand_input_.isLeft)) return false;
 
             if (!(right_hand_input_.getHorizaontalValue > 0.3f &&
-                left_hand_input_.getHorizaontalValue < -0.3f)) return false;
+                left_hand_input_.getHorizaontalValue < -0.3f))
+                return false;
             return true;
         }
     }
@@ -192,7 +193,39 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            return Input.GetKey(KeyCode.LeftShift);
+            if (!leap_contoller_.IsConnected) return Input.GetKey(KeyCode.LeftShift);
+            if (isBothHandsFront)
+            {
+                if (!(right_hand_input_.getVerticalValue >= 0.7f &&
+                    left_hand_input_.getVerticalValue >= 0.7f))
+                    return false;
+                return true;
+            }
+            else if (isBothHandsBack)
+            {
+                if (!(right_hand_input_.getVerticalValue <= -0.7f &&
+                    left_hand_input_.getVerticalValue <= -0.7f))
+                    return false;
+                return true;
+            }
+            else if (isBothHandsRight)
+            {
+                if (!(right_hand_input_.getHorizaontalValue >= 0.7f &&
+                        left_hand_input_.getHorizaontalValue >= 0.7f))
+                    return false;
+                return true;
+            }
+            else if (isBothHandsLeft)
+            {
+                if (!(right_hand_input_.getHorizaontalValue <= -0.7f &&
+                    left_hand_input_.getHorizaontalValue <= -0.7f))
+                    return false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 
@@ -209,10 +242,27 @@ public class PlayerController : MonoBehaviour
         right_hand_input_ = right_hand_input;
     }
 
+    public RightHandInput getRightHandInput
+    {
+        get
+        {
+            return right_hand_input_;
+        }
+    }
+
+    public LeftHandInput getLeftHandInput
+    {
+        get
+        {
+            return left_hand_input_;
+        }
+    }
+
     void Start()
     {
         leap_contoller_ = FindObjectOfType<HandController>().GetLeapController();
     }
+
 
     bool NullCheck()
     {

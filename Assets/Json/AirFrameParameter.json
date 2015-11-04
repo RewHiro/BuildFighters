@@ -5,7 +5,7 @@
             "Mass": 1.0,
             "Drag": 0.0,
             "MoveSpeed": 20.0,
-            "SwingSpeed": 150.0,
+            "SwingSpeed": 50.0,
             "BoostPower": 5.0,
             "JumpPower": 20.0,
             "MaxBoostValue": 100.0,

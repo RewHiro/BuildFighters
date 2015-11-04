@@ -90,12 +90,20 @@ public class RightHandInput : MonoBehaviour
     void Start()
     {
         hand_model_ = GetComponent<HandModel>();
-        FindObjectOfType<PlayerController>().SetRightHandInput(this);
+        player_controller_ = FindObjectOfType<PlayerController>();
+        player_controller_.SetRightHandInput(this);
 
         var parameter = FindObjectOfType<LeapMotionParameter>();
         REACTION_VALUE = parameter.getReactionValue;
-        reference_point_ = parameter.getReferencePoint;
+        reference_point_ = -parameter.getReferencePoint;
+
     }
 
+    void Update()
+    {
+        if (player_controller_.getRightHandInput == null) player_controller_.SetRightHandInput(this);
+    }
+
+    PlayerController player_controller_ = null;
     HandModel hand_model_ = null;
 }
