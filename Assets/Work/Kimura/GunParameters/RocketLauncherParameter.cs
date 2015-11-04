@@ -89,7 +89,7 @@ public class RocketLauncherParameter : MonoBehaviour {
 
         var json_text = File.ReadAllText(Utility.JSON_PATH + JSON_FILE_NAME);
         var json_data = JsonMapper.ToObject(json_text);
-        var parameters = json_data["WeaponGatlingGunParameter"];
+        var parameters = json_data["WeaponRocketLauncherParameter"];
 
         for (var i = 0; i < parameters.Count; ++i)
         {
@@ -107,15 +107,8 @@ public class RocketLauncherParameter : MonoBehaviour {
 
 
             rocket_launcher_parameter_.Add(temp_rocket_launcher_parameter_.ID, temp_rocket_launcher_parameter_);
-            weapon_parameters_test_.Add(temp_rocket_launcher_parameter_);
 
         }
-        json_.Add("WeaponGatlingGunParameter", weapon_parameters_test_);
-
-        string test = JsonMapper.ToJson(json_);
-
-        Debug.Log(test);
-
 
     }
 
@@ -133,7 +126,6 @@ public class RocketLauncherParameter : MonoBehaviour {
     }
 
     Dictionary<string, List<WeaponRocketLauncherParameter>> json_ = new Dictionary<string, List<WeaponRocketLauncherParameter>>();
-    List<WeaponRocketLauncherParameter> weapon_parameters_test_ = new List<WeaponRocketLauncherParameter>();
     Dictionary<int, WeaponRocketLauncherParameter> rocket_launcher_parameter_ = new Dictionary<int, WeaponRocketLauncherParameter>();
 
 }

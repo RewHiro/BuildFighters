@@ -108,7 +108,7 @@ public class ShotGunParameter : MonoBehaviour {
 
         var json_text = File.ReadAllText(Utility.JSON_PATH + JSON_FILE_NAME);
         var json_data = JsonMapper.ToObject(json_text);
-        var parameters = json_data["WeaponGatlingGunParameter"];
+        var parameters = json_data["WeaponShotGunParameter"];
 
         for (var i = 0; i < parameters.Count; ++i)
         {
@@ -128,15 +128,8 @@ public class ShotGunParameter : MonoBehaviour {
             temp_shot_gun_parameter.ExplanatoryText = (string)parameters[i]["ExplanatoryText"];
 
             shot_gun_parameters_.Add(temp_shot_gun_parameter.ID, temp_shot_gun_parameter);
-            weapon_parameters_test_.Add(temp_shot_gun_parameter);
 
         }
-        json_.Add("WeaponGatlingGunParameter", weapon_parameters_test_);
-
-        string test = JsonMapper.ToJson(json_);
-
-        Debug.Log(test);
-
 
     }
 
@@ -158,7 +151,6 @@ public class ShotGunParameter : MonoBehaviour {
     }
 
     Dictionary<string, List<WeaponShotGunParameter>> json_ = new Dictionary<string, List<WeaponShotGunParameter>>();
-    List<WeaponShotGunParameter> weapon_parameters_test_ = new List<WeaponShotGunParameter>();
     Dictionary<int, WeaponShotGunParameter> shot_gun_parameters_ = new Dictionary<int, WeaponShotGunParameter>();
 
 }
