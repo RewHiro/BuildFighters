@@ -17,5 +17,9 @@
         "X": 100.0
     },
 
-    "ReactionValue": 0.1
+    "ReactionValue": 0.1,
+
+    "ReactionBoostValue": 0.7,
+
+    "ReactionJumpValue": 0.4
 }

@@ -32,6 +32,16 @@ public class LeapMotionParameter : MonoBehaviour
         get; private set;
     }
 
+    public float getReactionBoostValue
+    {
+        get; private set;
+    }
+
+    public float getReactionJumpValue
+    {
+        get; private set;
+    }
+
     void Awake()
     {
         var json_text = File.ReadAllText(Utility.JSON_PATH + JSON_FILE_NAME);
@@ -53,7 +63,8 @@ public class LeapMotionParameter : MonoBehaviour
 
         getReferencePoint = (float)(double)json_data["ReferencePoint"]["X"];
         getReactionValue = (float)(double)json_data["ReactionValue"];
-
+        getReactionBoostValue = (float)(double)json_data["ReactionBoostValue"];
+        getReactionJumpValue = (float)(double)json_data["ReactionJumpValue"];
     }
 
 
