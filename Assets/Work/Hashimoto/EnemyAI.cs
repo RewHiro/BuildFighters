@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour {
         max_limit_distance_ = short_distance_ * short_distance_;
         min_limit_distance_ = 2;
         Move();
-        Debug.Log("近距離");
+        //Debug.Log("近距離");
     }
 
     private void MiddleDistanceAction()
