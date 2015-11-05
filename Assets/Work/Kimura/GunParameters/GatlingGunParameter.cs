@@ -6,26 +6,27 @@ using System.Text.RegularExpressions;
 using LitJson;
 using System;
 
-public class GatlingGunParameter : MonoBehaviour {
+public class GatlingGunParameter : BaseParameter
+{
 
 
     [SerializeField]
     string JSON_FILE_NAME = "";
 
-    public string GetName(int id)
+    public override string GetName(int id)
     {
         return gatling_gun_parameters_.ContainsKey(id) ?
             gatling_gun_parameters_[id].Name : ErrorMessageString(id);
     }
 
-    public string GetExplanatoryText(int id)
+    public override string GetExplanatoryText(int id)
     {
         return gatling_gun_parameters_.ContainsKey(id) ?
     gatling_gun_parameters_[id].ExplanatoryText : ErrorMessageString(id);
 
     }
 
-    public float GetAttackPower(int id)
+    public override float GetAttackPower(int id)
     {
         return gatling_gun_parameters_.ContainsKey(id) ?
     gatling_gun_parameters_[id].AttackPower : ErrorMessageFloat(id);
@@ -49,21 +50,21 @@ public class GatlingGunParameter : MonoBehaviour {
     gatling_gun_parameters_[id].FiringSpeed : ErrorMessageFloat(id);
     }
 
-    public int GetBulletsNumber(int id)
+    public override int GetBulletsNumber(int id)
     {
         return gatling_gun_parameters_.ContainsKey(id) ?
     gatling_gun_parameters_[id].BulletsNumber : ErrorMessageInt(id);
 
     }
 
-    public float GetBulletSpeed(int id)
+    public override float GetBulletSpeed(int id)
     {
         return gatling_gun_parameters_.ContainsKey(id) ?
     gatling_gun_parameters_[id].BulletSpeed : ErrorMessageFloat(id);
 
     }
 
-    public float GetReloadTime(int id)
+    public override float GetReloadTime(int id)
     {
         return gatling_gun_parameters_.ContainsKey(id) ?
     gatling_gun_parameters_[id].ReloadTime : ErrorMessageFloat(id);
