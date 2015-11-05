@@ -6,25 +6,26 @@ using System.Text.RegularExpressions;
 using LitJson;
 using System;
 
-public class RocketLauncherParameter : MonoBehaviour {
+public class RocketLauncherParameter : BaseParameter
+{
 
     [SerializeField]
     string JSON_FILE_NAME = "";
 
-    public string GetName(int id)
+    public override string  GetName(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
             rocket_launcher_parameter_[id].Name : ErrorMessageString(id);
     }
 
-    public string GetExplanatoryText(int id)
+    public override string GetExplanatoryText(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
     rocket_launcher_parameter_[id].ExplanatoryText : ErrorMessageString(id);
 
     }
 
-    public float GetAttackPower(int id)
+    public override float GetAttackPower(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
     rocket_launcher_parameter_[id].AttackPower : ErrorMessageFloat(id);
@@ -43,21 +44,21 @@ public class RocketLauncherParameter : MonoBehaviour {
     }
 
 
-    public int GetBulletsNumber(int id)
+    public override int GetBulletsNumber(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
     rocket_launcher_parameter_[id].BulletsNumber : ErrorMessageInt(id);
 
     }
 
-    public float GetBulletSpeed(int id)
+    public override float GetBulletSpeed(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
     rocket_launcher_parameter_[id].BulletSpeed : ErrorMessageFloat(id);
 
     }
 
-    public float GetReloadTime(int id)
+    public override float GetReloadTime(int id)
     {
         return rocket_launcher_parameter_.ContainsKey(id) ?
     rocket_launcher_parameter_[id].ReloadTime : ErrorMessageFloat(id);
