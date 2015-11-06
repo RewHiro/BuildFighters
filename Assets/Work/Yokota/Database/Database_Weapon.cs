@@ -10,7 +10,7 @@ public class Database_Weapon : MonoBehaviour
     /// </summary>
     #region
     [SerializeField, Tooltip("発射速度")]
-    public float LUANCH_SPEED = 0.0f;
+    public float INTERVAL_SPEED = 0.0f;
 
     [SerializeField, Tooltip("弾数")]
     public int BULLET_AMOUNT;
@@ -28,13 +28,14 @@ public class Database_Weapon : MonoBehaviour
     public float WAPON_ATTACKPOWER_MIN;
     #endregion
 
-    void Awake()
+    void Start()
     {
-        var textAsset = Resources.Load("Json/test") as TextAsset;
-        JsonNode json = JsonNode.Parse(textAsset.text);
+        var textAsset =  Resources.Load("Json/Weapon") as TextAsset;
+
+        JsonNode json =  JsonNode.Parse(textAsset.text);
 
 
-        LUANCH_SPEED = (float)json["Luanch_Speed"].
+        INTERVAL_SPEED = (float)json["Interval_Speed"].
             Get<double>();
         BULLET_AMOUNT = (int)json["Bullet_Amount"].
             Get<long>();
