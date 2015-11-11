@@ -7,7 +7,7 @@ public class TitleTest : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Return))
         {
-            FindObjectOfType<SceneManager>().Trasition(SceneManager.Type.GAME);
+            FindObjectOfType<SceneManager>().Trasition(SceneManager.Type.MODE);
         }
     }
 }

@@ -13,6 +13,8 @@ public class SceneManager : MonoBehaviour
         MENU,
         CUSTOMIZE,
         RESULT,
+        MODE,
+        LOBBY,
     }
 
     enum FadeStatus
