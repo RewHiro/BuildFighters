@@ -8,14 +8,16 @@ public class NetworkPlayerAttacker : NetworkBehaviour
 
     void Start()
     {
-        player_controller_ = GetComponent<PlayerController>();
-        var weapon_attacher = GetComponent<WeaponAttacher>();
+        if (!isLocalPlayer) return;
+        player_controller_ = GetComponent<NetworkPlayerController>();
+        var weapon_attacher = GetComponent<NetworkPlayerAttacher>();
         right_weapon_ = weapon_attacher.getRightWeapon;
         left_weapon_ = weapon_attacher.getLeftWeapon;
     }
 
     void FixedUpdate()
     {
+        if (!isLocalPlayer) return;
         AttackWithWeapon(player_controller_.isInputRightAttack, right_weapon_);
         AttackWithWeapon(player_controller_.isInputLeftAttack, left_weapon_);
     }
@@ -34,7 +36,7 @@ public class NetworkPlayerAttacker : NetworkBehaviour
     }
 
 
-    PlayerController player_controller_ = null;
+    NetworkPlayerController player_controller_ = null;
     Weapon right_weapon_ = null;
     Weapon left_weapon_ = null;
     Weapon back_weapon_ = null;

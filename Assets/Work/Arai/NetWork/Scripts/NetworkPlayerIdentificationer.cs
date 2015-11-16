@@ -12,11 +12,13 @@ public class NetworkPlayerIdentificationer : NetworkBehaviour
 
     public void ChangeID()
     {
+        if (!isLocalPlayer) return;
         ReadJson();
     }
 
     void Awake()
     {
+        if (!isLocalPlayer) return;
         ReadJson();
     }
 

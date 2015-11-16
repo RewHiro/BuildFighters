@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class PlayerRotater : MonoBehaviour
+public class PlayerRotater : NetworkBehaviour
 {
     void Start()
     {

@@ -8,7 +8,8 @@ public class NetworkBoostManager : NetworkBehaviour
 
     void Start()
     {
-        var id = GetComponent<Identificationer>().id;
+        if (!isLocalPlayer) return;
+        var id = GetComponent<NetworkPlayerIdentificationer>().id;
         boostValue = FindObjectOfType<AirFrameParameter>().GetMaxBoostValue(id);
     }
 }

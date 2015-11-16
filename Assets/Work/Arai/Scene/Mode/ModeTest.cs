@@ -7,4 +7,9 @@ public class ModeTest : MonoBehaviour
     {
         FindObjectOfType<SceneManager>().Trasition(SceneManager.Type.LOBBY);
     }
+
+    void Update()
+    {
+        if (Application.loadedLevelName != "lobby") Destroy(gameObject);
+    }
 }

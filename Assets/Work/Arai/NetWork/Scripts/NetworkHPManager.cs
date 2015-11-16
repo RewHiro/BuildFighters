@@ -8,7 +8,8 @@ public class NetworkHPManager : NetworkBehaviour
 
     void Start()
     {
-        var id = GetComponent<Identificationer>().id;
+        if (!isLocalPlayer) return;
+        var id = GetComponent<NetworkPlayerIdentificationer>().id;
         hp = FindObjectOfType<AirFrameParameter>().GetMaxHP(id);
     }
 

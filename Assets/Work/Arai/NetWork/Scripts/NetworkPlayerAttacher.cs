@@ -29,6 +29,8 @@ public class NetworkPlayerAttacher : NetworkBehaviour
 
     void Awake()
     {
+        if (!isLocalPlayer) return;
+        Debug.Log("OK");
         right_weapon_.AddComponent<AssaultRifle>();
         left_weapon_.AddComponent<RocketTest>();
     }

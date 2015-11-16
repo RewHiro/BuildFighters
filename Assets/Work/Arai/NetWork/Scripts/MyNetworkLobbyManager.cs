@@ -16,6 +16,7 @@ public class MyNetworkLobbyManager : NetworkLobbyManager
     public void StartLobby()
     {
         if (is_start_) return;
+        is_start_ = !is_start_;
         if (isHost)
         {
             singleton.StartHost();
@@ -24,12 +25,13 @@ public class MyNetworkLobbyManager : NetworkLobbyManager
         {
             singleton.StartClient();
         }
-        is_start_ = !is_start_;
+
     }
 
     public void StopLobby()
     {
         if (!is_start_) return;
+        is_start_ = !is_start_;
         if (isHost)
         {
             singleton.StopHost();
@@ -38,7 +40,7 @@ public class MyNetworkLobbyManager : NetworkLobbyManager
         {
             singleton.StopClient();
         }
-        is_start_ = !is_start_;
+
     }
 
     void Start()
